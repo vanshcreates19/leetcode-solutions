@@ -1,17 +1,21 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-     Arrays.sort(nums);
-     int i=0;
-     int j=1;
-     while(j<nums.length){
-        if(nums[i]==nums[j]){
-            return nums[i];
+        int slow=0;//considering as head ,as we used to do in cycle question
+        int fast=0;//there next will be point ]ing to the nums[pointer]
+        while(true){
+            slow=nums[slow];//moving slow by 1
+            fast=nums[fast];
+            fast=nums[fast];//moving fast by 2 
+            if(slow==fast){
+                //cycle hai and meeting point pe hai
+                slow=0;
+                while(slow!=fast){
+                    slow=nums[slow];
+                    fast=nums[fast];
+                }
+                return slow;
+           }
         }
-        else{
-            i++;
-            j++;
-        }
-     }
-     return 0;
+     
     }
 }
